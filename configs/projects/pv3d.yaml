@@ -1,0 +1,100 @@
+# secify the architectures and datasets
+includes:
+- configs/models/pv3d.yaml
+- configs/datasets/voxceleb.yaml
+
+model_config: {}
+
+optimizer:
+  type: Adam
+  params:
+    generator:
+      lr: 0.002
+      betas:
+        - 0
+        - 0.9919919678228657
+      eps: 1e-08
+      weight_decay: 0
+    img_discriminator:
+      lr: 0.0018823529411764706
+      betas:
+        - 0
+        - 0.9905854573074332
+      eps: 1e-08
+      weight_decay: 0
+    vid_discriminator:
+      lr: 0.0018823529411764706
+      betas:
+        - 0
+        - 0.9905854573074332
+      eps: 1e-08
+      weight_decay: 0
+  
+evaluation:
+  metrics:
+  - type: fvd
+    datasets:
+      - voxceleb
+    params:
+      real_dir: videos/real
+      fake_dir: videos/fake
+
+scheduler:
+  type: multi_step
+  params:
+    use_warmup: false
+    lr_steps:
+    - 40000
+    - 80000
+    lr_ratio: 0.5
+    warmup_factor: 0.2
+    warmup_iterations: ${training.warmup_iterations}
+
+training:
+  num_workers: 2
+  benchmark: true
+  nan_to_num: true
+  clip_gradients: false
+  clip_norm_mode: all
+  max_grad_l2_norm: 50.0
+  lr_scheduler: false
+  lr_ratio: 0.1
+  #dataloader
+  batch_size: 32
+  shuffle: true
+  pin_memory: true
+  drop_last: true
+  num_frames: ${dataset_config.voxceleb.num_frames}
+  use_ema: true
+  ema_img: 1250
+  ema_rampup: 0.05
+  gen_reg_interval: 4
+  disc_reg_interval: 16
+  img_viz_grid:
+    - 8
+    - 15
+  rendering_resolution: 64
+
+  max_updates: 300000
+  log_interval: 200
+  visualize_interval: 50
+  checkpoint_interval: 6000
+  evaluation_interval: 300000
+  warmup_iterations: 0
+  discriminator_fade_steps: 10000
+  generator_steps: 1
+  tensorboard: false
+  early_stop:
+    enabled: false
+    criteria: voxceleb/fvd
+    minimize: true
+  stdout_capture: false
+  find_unused_parameters: true
+
+env:
+  tensorboard_logdir: ${env.save_dir}/tblogs
+
+checkpoint:
+  max_to_keep: 16
+  reset:
+    optimizer: true

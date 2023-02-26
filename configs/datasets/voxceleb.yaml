@@ -1,0 +1,31 @@
+dataset_config:
+  voxceleb:
+    data_dir: Data/voxceleb
+    num_frames: 16
+    bi_frame: true
+    img_size: 512
+    
+    processors:
+
+      face_to_tensor_processor:
+        type: face_to_tensor
+        params: {}
+
+      face_augment_processor:
+        type: face_augment
+        params:
+          hflip:
+            prob: 0.5
+
+      face_resize_processor:
+        type: face_resize
+        params:
+          dest_size:
+            - ${dataset_config.voxceleb.img_size}
+            - ${dataset_config.voxceleb.img_size}
+
+      face_normalize_processor:
+        type: face_normalize
+        params:
+          mean: 0.5
+          std: 0.5

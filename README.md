@@ -7,7 +7,6 @@
 - [x] pretrained checkpoints
 
 ## Demo Videos
-
 **Unconditional Generation**
 </table>
 <table style="border:0px">

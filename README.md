@@ -6,6 +6,17 @@
 - [x] codebase
 - [x] pretrained checkpoints
 
+## Demo Videos
+
+**Unconditional Generation**
+</table>
+<table style="border:0px">
+   <tr>
+       <td><img src="release_docs/assets/teaser_demo.gif" width="400px" frame=void rules=none></td>
+       <td><img src="release_docs/assets/vc_128_stitched_demo.gif" width="400px"  frame=void rules=none></td>
+   </tr>
+</table>
+
 ## Installation
 ```
 conda create -n pv3d python=3.7

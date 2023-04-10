@@ -79,7 +79,7 @@ training:
   log_interval: 200
   visualize_interval: 50
   checkpoint_interval: 6000
-  evaluation_interval: 300000
+  evaluation_interval: 3000000
   warmup_iterations: 0
   discriminator_fade_steps: 10000
   generator_steps: 1

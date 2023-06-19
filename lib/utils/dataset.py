@@ -144,6 +144,8 @@ class VideoReader():
         if self.video_stream is None or self.container is None:
             return 0
         num_of_frames = self.container.streams.video[0].frames
+        if num_of_frames == 0:
+            num_of_frames = self.fps * float(self.container.streams.video[0].duration*self.video_stream.time_base)
         self.seek(0, backward=False)
         count = 0
         time_base = 512
@@ -157,4 +159,4 @@ class VideoReader():
         return start_pts, time_base, num_of_frames
     
     def _get_video_frame_rate(self):
-        return self.container.streams.video[0].guessed_rate.numerator
+        return float(self.container.streams.video[0].guessed_rate)

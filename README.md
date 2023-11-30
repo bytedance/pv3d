@@ -114,10 +114,9 @@ python3 lib/utils/multiview_error/compute_multiview_error.py --path save/${save_
 If you find this codebase useful for your research, please use the following entry.
 ```
 @inproceedings{xu2022pv3d,
-    author = {Xu, Eric Zhongcong and Zhang, Jianfeng and Liew, Junhao and Zhang, Wenqing and Bai, Song and Feng, Jiashi and Shou, Mike Zheng},
+    author = {Xu, Zhongcong and Zhang, Jianfeng and Liew, Junhao and Zhang, Wenqing and Bai, Song and Feng, Jiashi and Shou, Mike Zheng},
     title = {PV3D: A 3D Generative Model for Portrait Video Generation},
     booktitle={The Tenth International Conference on Learning Representations},
-    year = {2023},
-    url = {https://openreview.net/forum?id=o3yygm3lnzS}
+    year = {2023}
 }
 ```
